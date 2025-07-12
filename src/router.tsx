@@ -83,4 +83,4 @@ const routes: RouteObject[] = [
     },
 ]
 
-export const router = createBrowserRouter(routes, { basename: '/lesson-20' })
+export const router = createBrowserRouter(routes, { basename: '/diplom' })
