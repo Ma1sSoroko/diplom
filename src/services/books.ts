@@ -1,26 +1,27 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-import type { Book } from '../types'
-import { baseUrl, bookEndpoint, booksEndpoint } from '../config/api'
+import type { Book, BooksParamsType, BooksResponseType } from '../types'
+import { baseUrl, booksEndpoint, bookEndpoint } from '../config/locales/api'
+import { get } from '../config/locales/client'
 
-export const booksApi = createApi({
-    reducerPath: 'booksApi',
-    baseQuery: fetchBaseQuery({ baseUrl }),
-    endpoints: (builder) => ({
-            // getBooks: builder.query<Book, string>({
-            //     query: () => {
-            //         const params = { limit: '20', offset: '0' }
-            //         const paramsString = new URLSearchParams(params).toString()
+export async function requestBooks(params?: BooksParamsType): Promise<BooksResponseType | void> {
+    try {
+        const response = await get(baseUrl + booksEndpoint, { params })
 
-            //         return `${booksEndpoint}?${paramsString}`
-            //     }
-            // }),
+        return response.data
+    } catch (error) {
+        if (error instanceof Error) {
+            console.log('Error', error.message);
+        }
+    }
+}
 
-        getBookById: builder.query<Book, string>({
-            query: (isbn13) => `${bookEndpoint}/${isbn13}`,
-        }),
-    }),
+export async function requestBook(isbn13: string): Promise<Book | void> {
+    try {
+        const response = await get(baseUrl + bookEndpoint(isbn13))
 
-
-})
-
-export const { useGetBookByIdQuery } = booksApi
+        return response.data
+    } catch (error) {
+        if (error instanceof Error) {
+            console.log('Error', error.message);
+        }
+    }
+}
