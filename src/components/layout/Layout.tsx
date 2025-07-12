@@ -5,7 +5,6 @@ import { Title } from '../title/Title'
 import { Main } from '../main/Main'
 import { Container } from '../container/Container'
 import { Footer } from '../footer/Footer'
-import { Breadcrumbs } from '../breadcrumbs/Breadcrumbs'
 
 export function Layout(): React.ReactElement {
   const [title, setTitle] = useState<string>('')
@@ -15,8 +14,6 @@ export function Layout(): React.ReactElement {
       <Header />
       <Main>
         <Container>
-          {/* TODO: breadcrumbs */}
-          <Breadcrumbs>Back to home</Breadcrumbs>
           {title && <Title>{title}</Title>}
           <Outlet context={{ setTitle }} />
         </Container>

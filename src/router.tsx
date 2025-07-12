@@ -1,18 +1,11 @@
 import { createBrowserRouter, Navigate } from 'react-router'
 import { Layout } from './components/layout/Layout'
-import { SignIn } from './pages/SignIn'
-import { SignUp } from './pages/SignUp'
-import { Registration } from './pages/Registration'
-import { Search } from './pages/Search'
-import { SelectedPost } from './pages/SelectedPost'
-import { Success } from './pages/Success'
-import { ListOfPosts } from './components/listOfPosts/ListOfPosts'
-import { AllPosts } from './pages/AllPosts'
-import { FavoritePosts } from './pages/FavoritePosts'
+// import { Search } from './pages/Search'
+// import { ListOfBooks } from './components/listOfBooks/ListOfBooks'
+import { AllBooks } from './pages/AllBooks'
+import { FavoriteBooks } from './pages/FavoriteBooks'
 import type { RouteObject } from 'react-router'
-import { Activation } from './pages/Activation'
-import { NewPost } from './pages/NewPost'
-import { MyPosts } from './pages/MyPosts'
+import { BookPage } from './pages/Book'
 
 const routes: RouteObject[] = [
     {
@@ -20,65 +13,29 @@ const routes: RouteObject[] = [
         children: [
             {
                 path: '/',
-                element: <Navigate to="/posts/all/1" />,
+                element: <AllBooks />,
             },
             {
-                path: '/posts',
-                children: [
-                    {
-                        path: '/posts/all/:currentPage',
-                        element: <AllPosts />,
-                    },
-                    {
-                        path: '/posts/favorite',
-                        element: <FavoritePosts />,
-                    },
-                    {
-                        path: '/posts/search/:query/:currentPage',
-                        element: <Search />,
-                    },
-                    {
-                        path: '/posts/:id',
-                        element: <ListOfPosts />,
-                    },
-                    {
-                        path: '/posts/new',
-                        element: <NewPost />,
-                    }
-                ],
+                path: '/book/:isbn13',
+                element: <BookPage />,
+            },
+
+            {
+                path: '/books/all/:currentPage',
+                element: <AllBooks />,
             },
             {
-                path: '/auth/sign-up',
-                element: <SignUp />,
+                path: '/books/favorite',
+                element: <FavoriteBooks />,
             },
-            {
-                path: '/auth/sign-up/registration',
-                element: <Registration />,
-            },
-            {
-                path: '/auth/sign-in',
-                element: <SignIn />,
-            },
-            {
-                path: '/search',
-                element: <Search />,
-            },
-            {
-                path: '/selected-post',
-                element: <SelectedPost />,
-            },
-            {
-                path: '/auth/activation/:uid/:token',
-                element: <Activation />,
-            },
-            {
-                path: '/auth/activation/success',
-                element: <Success />,
-            },
-            {
-                path: '/posts/my_posts',
-                element: <MyPosts />,
-            },
+            // {
+            //     path: '/books/search/:query/:currentPage',
+            //     element: <Search />,
+            // },
+            // {
+            //     path: '/search',
+            //     element: <Search />,
+            // }
         ],
     },
 ]

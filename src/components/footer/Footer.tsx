@@ -7,9 +7,9 @@ export function Footer({ container: Container }: { container: React.ComponentTyp
   return (
     <Container>
       <footer>
-        <div className="d-flex align-items-center justify-content-between py-4 border-top">
-          <p>{locales[lang].footer.copyright}</p>
-          <p>{locales[lang].footer.rights} <strong>{lang}</strong></p>
+        <div className="d-flex align-items-center justify-content-between w-75 mx-auto my-5 border-top py-3">
+          <p className="text-muted">{locales[lang].footer.copyright}</p>
+          <p className="text-muted">{locales[lang].footer.rights}</p>
         </div>
       </footer>
     </Container>

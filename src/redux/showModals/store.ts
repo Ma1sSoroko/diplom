@@ -1,17 +1,15 @@
 import { configureStore } from '@reduxjs/toolkit'
-import { postPreviewReducer } from './postPreviewSlice'
 import { langReducer } from '../lang/langSlice'
 import { useDispatch, useSelector } from 'react-redux'
-import { postsReducer } from '../postsSlice'
+import { booksReducer } from '../booksSlice'
 import { authReducer } from '../auth/authSlice'
-import { postReducer } from '../postSlice'
+import { bookReducer } from '../bookSlice'
 
 export const store = configureStore({
   reducer: {
-    postPreview: postPreviewReducer,
     lang: langReducer,
-    posts: postsReducer,
-    post: postReducer,
+    books: booksReducer,
+    book: bookReducer,
     auth: authReducer
   }
 })

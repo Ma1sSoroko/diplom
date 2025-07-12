@@ -1,11 +1,9 @@
 import { useEffect } from 'react'
 import { useOutletContext, useParams } from 'react-router'
 import { locales } from '../config/locales'
-import { PostPreviewModal } from '../components/postPreviewModal/PostPreviewModal'
-import { PostPreviewImage } from '../redux/showModals/PostPreviewImage'
 import type { TitleContextType } from '../types'
 import { useAppSelector } from '../redux/showModals/store'
-import { AllPosts } from './AllPosts'
+import { AllBooks } from './AllBooks'
 
 export function Search(): React.ReactElement {
     const lang = useAppSelector(state => state.lang.lang)
@@ -24,10 +22,7 @@ export function Search(): React.ReactElement {
 
     return (
             <div>
-                <AllPosts />
-
-                <PostPreviewModal />
-                <PostPreviewImage />
+                <AllBooks />
             </div>
     )
 }

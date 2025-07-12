@@ -11,12 +11,12 @@ export function SearchForm () {
     event.preventDefault()
 
     if (!value) {
-      navigate('/posts/all/1')
+      navigate('/')
 
       return
     }
 
-    navigate(`/posts/search/${value}/1`)
+    navigate(`/books/search/${value}/1`)
   }
 
   return (

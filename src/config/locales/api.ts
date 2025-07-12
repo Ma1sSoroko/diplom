@@ -1,8 +1,5 @@
-export const baseUrl = 'https://studapi.teachmeskills.by'
+export const baseUrl = 'https://api.itbook.store/1.0/'
 
-export const postsEndpoint = '/blog/posts/'
-export const authSignUpEndpoint = '/auth/users/'
-export const authActivationEndpoint = '/auth/users/activation/'
-export const authSignInEndpoint = '/auth/jwt/create/'
-export const authRefreshEndpoint = '/auth/jwt/refresh/'
-export const myPostsEndpoint = '/blog/my_posts/'
+export const booksEndpoint = '/new'
+export const bookEndpoint = (isbn13: string) => `/books/${isbn13}`
+export const authRefreshEndpoint = '/auth/refresh'

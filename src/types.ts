@@ -1,6 +1,6 @@
 export type LangType = 'en' | 'ru'
 
-export type OrderingType = 'date' | 'title' | 'text'
+export type OrderingType = 'title' | 'price'
 
 export interface LangContextType {
   lang: LangType
@@ -17,22 +17,25 @@ export interface OrderingContextType {
   setOrdering: (ordering: OrderingType) => void
 }
 
-export interface MyComponentProps {
-  style: React.CSSProperties
-}
-
-export interface Post {
-  id: number
-  title?: string
-  text?: string
-  image?: string
-  date?: string
+export interface Book {
+  error: number
+  title: string
+  subtitle: string
+  authors: string
+  publisher: string
+  isbn10: number
+  isbn13: number
+  pages: number
+  year: number
+  rating: number
+  desc: string
+  price: string
+  image: string
+  url: string
+  pdf: {
+    [key: string]: string
+  }
   isFavorite?: boolean
-}
-
-export type PostPreviewState = {
-  isShowModal: boolean
-  data: Post | null
 }
 
 export type LangSlice = {
@@ -43,74 +46,32 @@ export type OrderingSlice = {
   ordering: OrderingType
 }
 
-export type PostsStateType = {
-  list: Post[] | null,
+export type BooksStateType = {
+  books: Book[] | null,
   error: string | null,
   isLoading: boolean,
-  favoritePosts: Post[],
-  myPosts: Post[] | null,
-  limit: number,
-  total: number,
-  ordering: string
+  favoriteBooks: Book[],
+  ordering: OrderingType
 }
 
-export type PostsMyStateType = {
-  list: Post[] | null,
+export type BooksMyStateType = {
+  books: Book[] | null,
   error: string | null,
   isLoading: boolean,
   limit: number,
   total: number
 }
 
-export type PostsParamsType = {
-  author__course_group?: number
+export type BooksParamsType = {
   limit?: number
   offset?: number
   ordering?: string
   search?: string
 }
 
-export type MyPostsParams = {
-  limit?: number
-  offset?: number
-}
-
-export type PostsResponseType = {
+export type BooksResponseType = {
   count: number
-  results: Post[]
-}
-
-export type SignUpBodyType = {
-  username: string
-  email: string
-  password: string
-  confirm_password: string
-  course_group?: number
-}
-
-export type UserType = {
-  id: number
-  username: string
-  email: string
-  course_group: number
-}
-
-export type ActivationBodyType = {
-  uid: string
-  token: string
-}
-
-export type ActivationStateType = {
-  isSignedUp: boolean,
-  isLoading: boolean,
-  error: string | null,
-  isActivated: boolean,
-  jwt: JwtType | null,
-}
-
-export type SignInBodyType = {
-  email: string
-  password: string
+  results: Book[]
 }
 
 export type JwtType = {
@@ -118,8 +79,8 @@ export type JwtType = {
   refresh: string
 }
 
-export type PostStateType = {
-  data: Post | null
+export type BookStateType = {
+  data: Book | null
   isLoading: boolean
   error: string | null
 }
