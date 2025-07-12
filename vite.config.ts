@@ -3,7 +3,7 @@ import react from '@vitejs/plugin-react'
 import checker from 'vite-plugin-checker'
 
 export default {
-  base: '/lesson-20/',
+  base: '/diplom/',
   plugins: [
     react(),
     checker({
