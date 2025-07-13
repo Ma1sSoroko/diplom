@@ -1,11 +1,10 @@
 import { useEffect } from 'react'
-import { NavLink, useOutletContext } from 'react-router'
-import { Book } from '../components/book/Book'
+import { useOutletContext } from 'react-router'
 import { locales } from '../config/locales'
 import type { TitleContextType } from '../types'
 import { useAppSelector, useAppDispatch } from '../redux/showModals/store'
 import { fetchBooks } from '../redux/booksSlice'
-
+import { BookDelFavorite } from '../components/bookDelFavorite/BookDelFavorite'
 
 export function FavoriteBooks(): React.ReactElement {
     const dispatch = useAppDispatch()
@@ -14,26 +13,20 @@ export function FavoriteBooks(): React.ReactElement {
     const { setTitle } = useOutletContext<TitleContextType>()
 
     useEffect(() => {
-        dispatch(fetchBooks({ ordering: 'title' }))
+        dispatch(fetchBooks({}))
     }, [dispatch])
 
-    if (favoriteBooks.length == 0) {
-        return <div>Favorite books are empty</div>
-    }
+    useEffect(() => { setTitle(locales[lang].favoriteBooks.title) }, [lang])
 
-    function buildClassName({ isActive }: { isActive: boolean }): string {
-        return isActive ? 'nav-link active' : 'nav-link'
+    if (favoriteBooks.length == 0) {
+        return <div>{locales[lang].favoriteBooks.empty}</div>
     }
 
     return (
         <div className="d-flex flex-wrap gap-3 justify-content-center">
             {favoriteBooks.map(book => {
                 if (!book.title || !book.image) return null;
-                const bookData = {
-                    title: book.title,
-                    image: book.image,
-                };
-                return <Book key={book.isbn13} {...bookData} />;
+                return <BookDelFavorite key={book.isbn13} {...book} />;
             })}
         </div>
     )

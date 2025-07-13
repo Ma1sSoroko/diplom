@@ -24,6 +24,12 @@ export const addFavoriteBook = createAsyncThunk<Book, Book, { rejectValue: strin
     }
 )
 
+export const removeFavoriteBook = createAsyncThunk<Book, Book, { rejectValue: string }>(
+    'books/removeFavoriteBook', async (book) => {
+        return book
+    }
+)
+
 const initialState: BooksStateType = {
     books: null,
     error: null,
@@ -55,6 +61,10 @@ export const booksSlice = createSlice({
             })
             .addCase(addFavoriteBook.fulfilled, (state, action: PayloadAction<Book>) => {
                 state.favoriteBooks.push(action.payload)
+                state.isLoading = false
+            })
+            .addCase(removeFavoriteBook.fulfilled, (state, action: PayloadAction<Book>) => {
+                state.favoriteBooks = state.favoriteBooks.filter(book => book.isbn13 !== action.payload.isbn13)
                 state.isLoading = false
             })
     }

@@ -27,15 +27,15 @@ export function AllBooks(): React.ReactElement {
     }, [dispatch, ordering])
 
     if (isLoading) {
-        return <div>Loading...</div>
+        return <div>{locales[lang].allBooks.loading}</div>
     }
 
     if (error) {
-        return <div>Error: {error}</div>
+        return <div>{locales[lang].allBooks.error}: {error}</div>
     }
 
     if (!books || books.length == 0) {
-        return <div>List is empty</div>
+        return <div>{locales[lang].allBooks.empty}</div>
     }
 
     function renderPagination(): React.ReactElement {

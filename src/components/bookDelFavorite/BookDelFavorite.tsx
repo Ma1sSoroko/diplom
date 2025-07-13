@@ -1,16 +1,16 @@
 import { Link } from 'react-router'
 import { useAppDispatch } from '../../redux/showModals/store'
-import { addFavoriteBook } from '../../redux/booksSlice'
+import { removeFavoriteBook } from '../../redux/booksSlice'
 import type { Book } from '../../types'
-import { FaBookmark } from 'react-icons/fa'
+import { FaRegBookmark } from 'react-icons/fa'
 
-export function Book(props: Book): React.ReactElement {
+export function BookDelFavorite(props: Book): React.ReactElement {
     const { title, price, image, isbn13 } = props
     const dispatch = useAppDispatch()
 
-    function handleClickAddToFavorite() {
-        dispatch(addFavoriteBook(props))
-        console.log(addFavoriteBook)
+    function handleClickRemoveFromFavorite() {
+        dispatch(removeFavoriteBook(props))
+        console.log(removeFavoriteBook)
     }
 
     return (
@@ -27,8 +27,8 @@ export function Book(props: Book): React.ReactElement {
                     <div className="d-flex gap-2">
                         <Link to={`/book/${isbn13}`} className="btn">Подробнее</Link>
                     </div>
-                    <div className="btn mb-2" onClick={handleClickAddToFavorite}>
-                        <FaBookmark className="text-dark" />
+                    <div className="btn mb-2" onClick={handleClickRemoveFromFavorite}>
+                        <FaRegBookmark className="text-dark" />
                     </div>
                 </div>
             </div>

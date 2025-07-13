@@ -5,8 +5,15 @@ export const en: { [key: string]: { [key: string]: string } } = {
     },
     allBooks: {
         title: 'New Releases Books',
+        empty: 'No books',
+        loading: 'Loading...',
+        error: 'Error',
     },
-    
+    favoriteBooks: {
+        title: 'Favorite Books',
+        empty: 'No favorite books',
+    },
+
     search: {
         title: 'Search',
     },
